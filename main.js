@@ -1,6 +1,6 @@
 /* ==========================================================
    1. DICTIONARY & LOCALIZATION ENGINE (EN, HI, HINGLISH)
-   100% Key-Symmetric for Node Test Runner Quality Gate
+   100% Key-Symmetric across all 60 keys
    ========================================================== */
 const i18n = {
   en: {
@@ -46,52 +46,88 @@ const i18n = {
     errFileType: "Unsupported file type. Please upload a valid file.",
     errProcessing: "Processing failed. Please check the file and try again.",
     errPdfEngine: "PDF engine could not initialize. Check WebAssembly files.",
-    errPdfPassword: "Encrypted or password-protected PDFs are not supported."
+    errPdfPassword: "Encrypted or password-protected PDFs are not supported.",
+    navMenu: "Menu",
+    navClose: "Close",
+    navCompress: "Compress",
+    navGuides: "Guides & Docs",
+    navAbout: "About Pixel Bloom",
+    navDevLinks: "Developer Links",
+    navLang: "Language",
+    linkRepo: "Source Repository",
+    linkFork: "Fork on GitHub",
+    linkIssues: "Report an Issue",
+    linkCommits: "Commit History",
+    linkReleases: "GitHub Releases",
+    guideHeading: "Documentation & Guides",
+    guideSub: "Everything you need to compress, run locally, contribute, and deploy.",
+    aboutHeading: "About Pixel Bloom",
+    aboutSub: "Pure client-side image and PDF compression engine running locally via WebAssembly.",
+    aboutBio: "Creator of Pixel Bloom. Building fast, privacy-first, client-side web tools.",
+    backToCompress: "Back to Compression"
   },
   hi: {
-    stepBadge: "स्टेप 01 • टूल",
-    toolHeading: "फ़ास्ट कंप्रेशन",
-    toolDesc: "तेज़ और सुरक्षित कंप्रेशन। बिना सर्वर पर अपलोड किए, पूरी तरह आपके डिवाइस में चलता है।",
+    stepBadge: "चरण 01 • यूटिलिटी",
+    toolHeading: "त्वरित एवं सुरक्षित कंप्रेशन",
+    toolDesc: "हल्का और पूर्णतः निजी कंप्रेशन। बिना किसी सर्वर अपलोड के, सब कुछ सीधे आपके डिवाइस पर चलता है।",
     modeImage: "इमेज",
     modePdf: "पीडीएफ",
-    dropTitleImage: "अपनी इमेज यहाँ ड्रॉप करें, या चुनें",
-    dropSubImage: "JPG, PNG और WebP सपोर्ट (अधिकतम 25MB)",
-    dropTitlePdf: "अपनी PDF फाइल यहाँ ड्रॉप करें, या चुनें",
-    dropSubPdf: "स्टैंडर्ड PDF डाक्यूमेंट्स समर्थित (अधिकतम 25MB)",
+    dropTitleImage: "अपनी इमेज यहाँ छोड़ें या फ़ाइल चुनें",
+    dropSubImage: "JPG, PNG और WebP समर्थित (अधिकतम 25MB)",
+    dropTitlePdf: "अपनी PDF यहाँ छोड़ें या फ़ाइल चुनें",
+    dropSubPdf: "मानक PDF दस्तावेज़ समर्थित (अधिकतम 25MB)",
     browseBtn: "फ़ाइल चुनें",
-    previewTag: "प्रिव्यू",
-    viewResult: "नतीजा",
-    viewOriginal: "मूल",
-    tabQuality: "क्वालिटी %",
-    tabTarget: "टारगेट साइज़",
+    previewTag: "पूर्वावलोकन",
+    viewResult: "परिणाम",
+    viewOriginal: "मूल फ़ाइल",
+    tabQuality: "गुणवत्ता %",
+    tabTarget: "लक्षित साइज़",
     qualityLabel: "कंप्रेशन स्तर",
-    targetLabel: "टारगेट साइज़ चुनें",
+    targetLabel: "लक्षित साइज़ चुनें",
     formatLabel: "आउटपुट फ़ॉर्मेट",
-    pdfPresetLow: "कम (90%)",
+    pdfPresetLow: "उच्च गुणवत्ता (90%)",
     pdfPresetBalanced: "संतुलित (75%)",
-    pdfPresetHigh: "अधिक (40%)",
+    pdfPresetHigh: "अधिकतम कंप्रेशन (40%)",
     origSizeLabel: "मूल साइज़",
     newSizeLabel: "नया साइज़",
-    resetBtn: "रीसेट",
-    downloadBtn: "डाउनलोड करें",
+    resetBtn: "रीसेट करें",
+    downloadBtn: "फ़ाइल डाउनलोड करें",
     applyBtn: "लागू करें",
     statusEst: "अनुमानित",
     statusAct: "वास्तविक",
-    targetMet: "टारगेट पूरा हुआ",
+    targetMet: "लक्ष्य प्राप्त हुआ",
     targetClosest: "निकटतम प्राप्त साइज़",
-    pdfOptimized: "PDF सफलतापूर्वक कंप्रेस हुआ",
+    pdfOptimized: "PDF सफलतापूर्वक कंप्रेस हो गई",
     pdfNoReduction: "PDF पहले से अनुकूलित है (0% बचत, मूल सुरक्षित)",
-    pdfReady: "PDF डाक्यूमेंट लोड हुआ",
-    stagePreparing: "डाक्यूमेंट तैयार हो रहा है...",
+    pdfReady: "PDF दस्तावेज़ लोड हुआ",
+    stagePreparing: "दस्तावेज़ तैयार किया जा रहा है...",
     stageLoading: "WebAssembly इंजन लोड हो रहा है...",
-    stageCompressing: "स्ट्रीम और पेज ऑप्टिमाइज़ हो रहे हैं...",
-    stageFinalizing: "आउटपुट सत्यापित हो रहा है...",
-    stageCompleted: "कंप्रेशन पूरा हुआ",
-    errSizeLimit: "फ़ाइल 25MB से बड़ी है। कृपया छोटी फ़ाइल चुनें।",
+    stageCompressing: "स्ट्रीम और पेजों को ऑप्टिमाइज़ किया जा रहा है...",
+    stageFinalizing: "आउटपुट संरचना सत्यापित की जा रही है...",
+    stageCompleted: "कंप्रेशन पूर्ण हुआ",
+    errSizeLimit: "फ़ाइल 25MB सीमा से अधिक है। कृपया छोटी फ़ाइल चुनें।",
     errFileType: "अमान्य फ़ाइल प्रकार। कृपया सही फ़ाइल चुनें।",
-    errProcessing: "प्रोसेसिंग विफल हुई। कृपया पुनः प्रयास करें।",
-    errPdfEngine: "PDF इंजन शुरू नहीं हो सका। WebAssembly फ़ाइलें जांचें।",
-    errPdfPassword: "पासवर्ड सुरक्षित PDF समर्थित नहीं है।"
+    errProcessing: "प्रोसेसिंग विफल रही। कृपया फ़ाइल जांचें और पुनः प्रयास करें।",
+    errPdfEngine: "PDF इंजन प्रारंभ नहीं हो सका। WebAssembly फ़ाइलें जांचें।",
+    errPdfPassword: "पासवर्ड-सुरक्षित PDF समर्थित नहीं है।",
+    navMenu: "मेनू",
+    navClose: "बंद करें",
+    navCompress: "कंप्रेस टूल",
+    navGuides: "गाइड्स और प्रलेखन",
+    navAbout: "Pixel Bloom के बारे में",
+    navDevLinks: "डेवलपर लिंक्स",
+    navLang: "भाषा चुनें",
+    linkRepo: "सोर्स रिपॉजिटरी",
+    linkFork: "GitHub पर फ़ोर्क करें",
+    linkIssues: "समस्या रिपोर्ट करें",
+    linkCommits: "कमिट इतिहास",
+    linkReleases: "GitHub रिलीज़",
+    guideHeading: "दस्तावेज़ एवं गाइड्स",
+    guideSub: "फ़ाइल कंप्रेस करना, लोकल चलाना, योगदान देना और डिप्लॉय करना सीखें।",
+    aboutHeading: "Pixel Bloom के बारे में",
+    aboutSub: "पूरी तरह से आपके डिवाइस में WebAssembly से चलने वाला इमेज और PDF कंप्रेशन इंजन।",
+    aboutBio: "Pixel Bloom के निर्माता। तीव्र, पूर्णतः निजी और क्लाइंट-साइड वेब टूल्स का विकास।",
+    backToCompress: "कंप्रेशन पर वापस जाएं"
   },
   hinglish: {
     stepBadge: "Step 01 • Utility",
@@ -136,7 +172,25 @@ const i18n = {
     errFileType: "File type support nahi hai. Valid file upload karein.",
     errProcessing: "Process fail hua. Please dusri file try karein.",
     errPdfEngine: "PDF engine start nahi ho saka. WASM assets check karein.",
-    errPdfPassword: "Password-protected PDF support nahi hai."
+    errPdfPassword: "Password-protected PDF support nahi hai.",
+    navMenu: "Menu",
+    navClose: "Close",
+    navCompress: "Compress",
+    navGuides: "Guides & Docs",
+    navAbout: "About Pixel Bloom",
+    navDevLinks: "Developer Links",
+    navLang: "Language Chunein",
+    linkRepo: "Source Repository",
+    linkFork: "GitHub par Fork karein",
+    linkIssues: "Issue report karein",
+    linkCommits: "Commit History",
+    linkReleases: "GitHub Releases",
+    guideHeading: "Documentation & Guides",
+    guideSub: "Files compress karna, locally run karna, contribute aur deploy karna seekhein.",
+    aboutHeading: "About Pixel Bloom",
+    aboutSub: "Fully client-side WebAssembly se device me chalne wala image aur PDF compression engine.",
+    aboutBio: "Pixel Bloom ke creator. Fast, private aur client-side web tools builder.",
+    backToCompress: "Compression par wapas jayein"
   }
 };
 
@@ -147,11 +201,14 @@ let currentMode = "image";
 let currentTab = "slider";
 let targetSizeKB = 100;
 let currentPreviewMode = "result";
+let currentView = "compress";
 
 function applyLanguage(lang) {
   if (!i18n[lang]) return;
   currentLang = lang;
   localStorage.setItem("mono_lang", lang);
+  document.documentElement.setAttribute("data-current-lang", lang);
+  document.documentElement.setAttribute("lang", lang === "hi" ? "hi" : "en");
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
@@ -177,7 +234,105 @@ function updateDropzoneCopy() {
 }
 
 /* ==========================================================
-   2. SYSTEM-AWARE THEME ENGINE
+   2. MODULAR IN-PAGE VIEW ROUTING SYSTEM
+   ========================================================== */
+const viewCompress = document.getElementById("viewCompress");
+const viewGuides = document.getElementById("viewGuides");
+const viewAbout = document.getElementById("viewAbout");
+
+const allViews = {
+  compress: viewCompress,
+  guides: viewGuides,
+  about: viewAbout
+};
+
+function switchView(viewName) {
+  if (!allViews[viewName] || currentView === viewName) {
+    closeDrawer();
+    return;
+  }
+
+  Object.keys(allViews).forEach((key) => {
+    const viewEl = allViews[key];
+    if (key === viewName) {
+      viewEl.classList.remove("hidden-view");
+    } else {
+      viewEl.classList.add("hidden-view");
+    }
+  });
+
+  currentView = viewName;
+
+  document.querySelectorAll(".drawer-nav-item[data-nav-target]").forEach((item) => {
+    const isTarget = item.getAttribute("data-nav-target") === viewName;
+    item.classList.toggle("active", isTarget);
+  });
+
+  closeDrawer();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.querySelectorAll("[data-nav-target]").forEach((el) => {
+  el.addEventListener("click", () => {
+    const target = el.getAttribute("data-nav-target");
+    switchView(target);
+  });
+});
+
+/* ==========================================================
+   3. HAMBURGER NAVIGATION DRAWER CONTROLLER
+   ========================================================== */
+const menuToggleBtn = document.getElementById("menuToggleBtn");
+const navDrawer = document.getElementById("navDrawer");
+const navBackdrop = document.getElementById("navBackdrop");
+const drawerCloseBtn = document.getElementById("drawerCloseBtn");
+
+function openDrawer() {
+  navDrawer.classList.add("open");
+  navDrawer.setAttribute("aria-hidden", "false");
+  navBackdrop.classList.remove("hidden");
+  navBackdrop.classList.add("active");
+  navBackdrop.setAttribute("aria-hidden", "false");
+  menuToggleBtn.classList.add("is-active");
+  menuToggleBtn.setAttribute("aria-expanded", "true");
+  document.body.classList.add("drawer-open");
+  drawerCloseBtn.focus();
+}
+
+function closeDrawer() {
+  navDrawer.classList.remove("open");
+  navDrawer.setAttribute("aria-hidden", "true");
+  navBackdrop.classList.remove("active");
+  menuToggleBtn.classList.remove("is-active");
+  menuToggleBtn.setAttribute("aria-expanded", "false");
+  document.body.classList.remove("drawer-open");
+
+  setTimeout(() => {
+    if (!navDrawer.classList.contains("open")) {
+      navBackdrop.classList.add("hidden");
+      navBackdrop.setAttribute("aria-hidden", "true");
+    }
+  }, 280);
+}
+
+menuToggleBtn.addEventListener("click", () => {
+  const isOpen = navDrawer.classList.contains("open");
+  if (isOpen) closeDrawer();
+  else openDrawer();
+});
+
+drawerCloseBtn.addEventListener("click", closeDrawer);
+navBackdrop.addEventListener("click", closeDrawer);
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && navDrawer.classList.contains("open")) {
+    closeDrawer();
+    menuToggleBtn.focus();
+  }
+});
+
+/* ==========================================================
+   4. SYSTEM-AWARE THEME ENGINE
    ========================================================== */
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 const themeIcon = document.getElementById("themeIcon");
@@ -218,7 +373,7 @@ themeToggleBtn.addEventListener("click", () => {
 });
 
 /* ==========================================================
-   3. MEMORY LIFECYCLE & ERROR MANAGEMENT
+   5. MEMORY LIFECYCLE & ERROR MANAGEMENT
    ========================================================== */
 const errorBanner = document.getElementById("errorBanner");
 const errorMessage = document.getElementById("errorMessage");
@@ -250,7 +405,7 @@ function revokeAllTrackedUrls() {
 }
 
 /* ==========================================================
-   4. UI CONTROLS & WORKBENCH ENGINE
+   6. WORKBENCH CONTROLS & ENGINE INTEGRATION
    ========================================================== */
 const modeTabs = document.querySelectorAll(".mode-tab");
 const dropzone = document.getElementById("dropzone");
@@ -295,6 +450,7 @@ const reductionBadge = document.getElementById("reductionBadge");
 
 const resetBtn = document.getElementById("resetBtn");
 const downloadBtn = document.getElementById("downloadBtn");
+const bloomFlourish = document.getElementById("bloomFlourish");
 
 let activeImage = null;
 let originalDataUrl = "";
@@ -306,6 +462,7 @@ let selectedFormat = "image/webp";
 let compressedBlob = null;
 let isProcessing = false;
 let currentSessionId = 0;
+let flourishTimeout = null;
 
 let pdfWorker = null;
 
@@ -370,6 +527,19 @@ function triggerMetricSettling() {
   reductionBadge.classList.add("metric-settle");
 }
 
+function triggerBloomFlourish() {
+  if (!bloomFlourish) return;
+  if (flourishTimeout) clearTimeout(flourishTimeout);
+
+  bloomFlourish.classList.remove("bloom-active");
+  void bloomFlourish.offsetWidth;
+  bloomFlourish.classList.add("bloom-active");
+
+  flourishTimeout = setTimeout(() => {
+    bloomFlourish.classList.remove("bloom-active");
+  }, 700);
+}
+
 function updateMetricsUI(newSize, isEstimated = false) {
   newSizeVal.textContent = (isEstimated ? "~" : "") + formatBytes(newSize);
 
@@ -383,7 +553,6 @@ function updateMetricsUI(newSize, isEstimated = false) {
     reductionBadge.classList.remove("larger");
     reductionBadge.style.opacity = "0.7";
     downloadBtn.disabled = true;
-    downloadBtn.classList.remove("ready-aura");
     return;
   }
 
@@ -406,18 +575,15 @@ function updateMetricsUI(newSize, isEstimated = false) {
 
   if (!isEstimated && compressedBlob && !isProcessing) {
     triggerMetricSettling();
+    triggerBloomFlourish();
     downloadBtn.disabled = false;
-    downloadBtn.classList.add("ready-aura");
   } else {
     downloadBtn.disabled = isEstimated || !compressedBlob || isProcessing;
-    if (downloadBtn.disabled) {
-      downloadBtn.classList.remove("ready-aura");
-    }
   }
 }
 
 /* ==========================================================
-   5. REAL-TIME ESTIMATORS & IMAGE PIPELINE
+   7. REAL-TIME ESTIMATORS & IMAGE PIPELINE
    ========================================================== */
 function renderImageToCanvas(quality, format, callback) {
   if (!activeImage) return;
@@ -467,7 +633,6 @@ function compressImage(quality) {
   const sessionId = currentSessionId;
   isProcessing = true;
   downloadBtn.disabled = true;
-  downloadBtn.classList.remove("ready-aura");
 
   renderImageToCanvas(quality, selectedFormat, (blob) => {
     if (sessionId !== currentSessionId) return;
@@ -496,7 +661,6 @@ function runImageTargetSizeCompression(targetKB) {
   const targetBytes = targetKB * 1024;
   isProcessing = true;
   downloadBtn.disabled = true;
-  downloadBtn.classList.remove("ready-aura");
 
   let minQ = 0.05;
   let maxQ = 0.95;
@@ -560,7 +724,7 @@ function runImageTargetSizeCompression(targetKB) {
 }
 
 /* ==========================================================
-   6. PDF GRANULAR COMPRESSION ENGINE (QUALITY + TARGET SIZE)
+   8. PDF GRANULAR COMPRESSION ENGINE (QUALITY + TARGET SIZE)
    ========================================================== */
 function compressPdf(customParams = {}) {
   if (!activePdfBytes) return;
@@ -568,7 +732,6 @@ function compressPdf(customParams = {}) {
   const sessionId = currentSessionId;
   isProcessing = true;
   downloadBtn.disabled = true;
-  downloadBtn.classList.remove("ready-aura");
   setControlsDisabled(true);
   calcStatusBadge.textContent = "...";
   targetStatusText.textContent = "";
@@ -658,13 +821,12 @@ function handlePdfWorkerError(err) {
   setControlsDisabled(false);
   hideProgressBar();
   downloadBtn.disabled = true;
-  downloadBtn.classList.remove("ready-aura");
   terminatePdfWorker();
   showError("errPdfEngine");
 }
 
 /* ==========================================================
-   7. UNIFIED DISPATCHERS
+   9. UNIFIED DISPATCHERS
    ========================================================== */
 function runCompression() {
   if (currentMode === "image") {
@@ -683,7 +845,7 @@ function runTargetSizeCompression(targetKB) {
 }
 
 /* ==========================================================
-   8. FILE INGESTION & VALIDATION
+   10. FILE INGESTION & VALIDATION
    ========================================================== */
 function loadFile(file) {
   clearError();
@@ -842,8 +1004,8 @@ toggleResultBtn.addEventListener("click", () => setPreviewMode("result"));
 toggleOrigBtn.addEventListener("click", () => setPreviewMode("original"));
 
 /* ==========================================================
-   9. EVENT LISTENERS
-   ========================================================== */
+   11. EVENT LISTENERS
+   ========================================================= */
 modeTabs.forEach((tab) => {
   tab.addEventListener("click", () => {
     if (isProcessing) return;
@@ -1035,6 +1197,14 @@ function resetTool() {
   hideProgressBar();
   setControlsDisabled(false);
 
+  if (bloomFlourish) {
+    bloomFlourish.classList.remove("bloom-active");
+  }
+  if (flourishTimeout) {
+    clearTimeout(flourishTimeout);
+    flourishTimeout = null;
+  }
+
   activeImage = null;
   activePdfBytes = null;
   compressedBlob = null;
@@ -1056,7 +1226,6 @@ function resetTool() {
   workbench.classList.add("hidden");
   dropzone.classList.remove("hidden");
   downloadBtn.disabled = true;
-  downloadBtn.classList.remove("ready-aura");
 
   origSizeVal.textContent = "0 KB";
   newSizeVal.textContent = "0 KB";
@@ -1099,7 +1268,7 @@ document.querySelectorAll(".lang-btn").forEach((btn) => {
 });
 
 /* ==========================================================
-   10. INITIALIZATION
+   12. INITIALIZATION
    ========================================================== */
 applyLanguage(currentLang);
 applyTheme(currentThemeMode);
