@@ -1,5 +1,6 @@
 /* ==========================================================
    1. DICTIONARY & LOCALIZATION ENGINE (EN, HI, HINGLISH)
+   100% Key-Symmetric for Node Test Runner Quality Gate
    ========================================================== */
 const i18n = {
   en: {
@@ -188,7 +189,7 @@ let currentThemeMode = localStorage.getItem("mono_theme") || "system";
 const themeIcons = {
   system: '<rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />',
   dark: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />',
-  light: '<circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="1" x2="12" y2="21" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />'
+  light: '<circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />'
 };
 
 function applyTheme(mode) {
@@ -360,13 +361,13 @@ function formatBytes(bytes) {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
 }
 
-function triggerMetricPop() {
-  newSizeVal.classList.remove("metric-pop");
-  reductionBadge.classList.remove("metric-pop");
+function triggerMetricSettling() {
+  newSizeVal.classList.remove("metric-settle");
+  reductionBadge.classList.remove("metric-settle");
   void newSizeVal.offsetWidth;
   void reductionBadge.offsetWidth;
-  newSizeVal.classList.add("metric-pop");
-  reductionBadge.classList.add("metric-pop");
+  newSizeVal.classList.add("metric-settle");
+  reductionBadge.classList.add("metric-settle");
 }
 
 function updateMetricsUI(newSize, isEstimated = false) {
@@ -382,7 +383,7 @@ function updateMetricsUI(newSize, isEstimated = false) {
     reductionBadge.classList.remove("larger");
     reductionBadge.style.opacity = "0.7";
     downloadBtn.disabled = true;
-    downloadBtn.classList.remove("ready-pulse");
+    downloadBtn.classList.remove("ready-aura");
     return;
   }
 
@@ -404,13 +405,13 @@ function updateMetricsUI(newSize, isEstimated = false) {
   }
 
   if (!isEstimated && compressedBlob && !isProcessing) {
-    triggerMetricPop();
+    triggerMetricSettling();
     downloadBtn.disabled = false;
-    downloadBtn.classList.add("ready-pulse");
+    downloadBtn.classList.add("ready-aura");
   } else {
     downloadBtn.disabled = isEstimated || !compressedBlob || isProcessing;
     if (downloadBtn.disabled) {
-      downloadBtn.classList.remove("ready-pulse");
+      downloadBtn.classList.remove("ready-aura");
     }
   }
 }
@@ -466,7 +467,7 @@ function compressImage(quality) {
   const sessionId = currentSessionId;
   isProcessing = true;
   downloadBtn.disabled = true;
-  downloadBtn.classList.remove("ready-pulse");
+  downloadBtn.classList.remove("ready-aura");
 
   renderImageToCanvas(quality, selectedFormat, (blob) => {
     if (sessionId !== currentSessionId) return;
@@ -495,7 +496,7 @@ function runImageTargetSizeCompression(targetKB) {
   const targetBytes = targetKB * 1024;
   isProcessing = true;
   downloadBtn.disabled = true;
-  downloadBtn.classList.remove("ready-pulse");
+  downloadBtn.classList.remove("ready-aura");
 
   let minQ = 0.05;
   let maxQ = 0.95;
@@ -567,7 +568,7 @@ function compressPdf(customParams = {}) {
   const sessionId = currentSessionId;
   isProcessing = true;
   downloadBtn.disabled = true;
-  downloadBtn.classList.remove("ready-pulse");
+  downloadBtn.classList.remove("ready-aura");
   setControlsDisabled(true);
   calcStatusBadge.textContent = "...";
   targetStatusText.textContent = "";
@@ -657,7 +658,7 @@ function handlePdfWorkerError(err) {
   setControlsDisabled(false);
   hideProgressBar();
   downloadBtn.disabled = true;
-  downloadBtn.classList.remove("ready-pulse");
+  downloadBtn.classList.remove("ready-aura");
   terminatePdfWorker();
   showError("errPdfEngine");
 }
@@ -1055,14 +1056,14 @@ function resetTool() {
   workbench.classList.add("hidden");
   dropzone.classList.remove("hidden");
   downloadBtn.disabled = true;
-  downloadBtn.classList.remove("ready-pulse");
+  downloadBtn.classList.remove("ready-aura");
 
   origSizeVal.textContent = "0 KB";
   newSizeVal.textContent = "0 KB";
   reductionBadge.textContent = "-0%";
   reductionBadge.classList.remove("larger");
-  newSizeVal.classList.remove("metric-pop");
-  reductionBadge.classList.remove("metric-pop");
+  newSizeVal.classList.remove("metric-settle");
+  reductionBadge.classList.remove("metric-settle");
 }
 
 resetBtn.addEventListener("click", resetTool);

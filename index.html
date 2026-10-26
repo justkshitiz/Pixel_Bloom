@@ -4,14 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Pixel Bloom - Fast Local Image & PDF Compression</title>
+
+  <!-- Typography Preconnect & Font Ingestion -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="main.css" />
 </head>
 <body>
+  <!-- Ambient Atmospheric & Technical Background Matrix (Zero Pointer Interference) -->
+  <div class="ambient-mesh-canvas" aria-hidden="true">
+    <div class="ambient-glow ambient-glow-primary"></div>
+    <div class="ambient-glow ambient-glow-secondary"></div>
+    <div class="technical-grid-overlay"></div>
+  </div>
+
   <div class="app-container">
+    <!-- Top Navigation -->
     <header class="top-nav" role="banner">
       <div class="brand">
+        <span class="brand-dot-pulse-ring" aria-hidden="true"></span>
         <span class="brand-dot" aria-hidden="true"></span>
         <span class="brand-name">Pixel Bloom</span>
+        <span class="brand-tech-badge" aria-hidden="true">WASM • Local</span>
       </div>
 
       <div class="nav-controls">
@@ -49,9 +65,22 @@
 
       <!-- Main Compression Card -->
       <section class="card-container" aria-label="Compression Workspace">
+        <!-- Precision Corner Fiducial Markers -->
+        <div class="card-fiducial card-fiducial-tl" aria-hidden="true"></div>
+        <div class="card-fiducial card-fiducial-tr" aria-hidden="true"></div>
+        <div class="card-fiducial card-fiducial-bl" aria-hidden="true"></div>
+        <div class="card-fiducial card-fiducial-br" aria-hidden="true"></div>
+
         <!-- Error Notification Banner -->
         <div id="errorBanner" class="error-banner hidden" role="alert" aria-live="assertive">
-          <span id="errorMessage"></span>
+          <div class="error-banner-content">
+            <svg class="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span id="errorMessage"></span>
+          </div>
           <button type="button" id="closeErrorBtn" class="error-close" aria-label="Dismiss error notification">&times;</button>
         </div>
 
@@ -60,6 +89,7 @@
           <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" hidden />
           <div class="dropzone-inner">
             <div class="dropzone-icon-circle" aria-hidden="true">
+              <div class="icon-ring-glow"></div>
               <svg id="dropIcon" class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="17 8 12 3 7 8" />
@@ -90,15 +120,18 @@
               </div>
 
               <div class="preview-box">
+                <div class="preview-tech-backdrop" aria-hidden="true"></div>
                 <img id="previewImage" alt="Preview of processed visual file" class="hidden" />
                 <div id="pdfDocPreview" class="pdf-preview-stub hidden">
-                  <svg class="pdf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
-                  </svg>
+                  <div class="pdf-icon-ring" aria-hidden="true">
+                    <svg class="pdf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                      <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                  </div>
                   <span id="pdfPageText" class="pdf-page-count" data-i18n="pdfReady">PDF Document Loaded</span>
                 </div>
               </div>
@@ -120,7 +153,9 @@
                   <label for="qualityRange" data-i18n="qualityLabel">Compression Level</label>
                   <span id="qualityVal" class="metric-val" aria-live="polite">80%</span>
                 </div>
-                <input type="range" id="qualityRange" min="5" max="95" value="80" class="range-slider" aria-label="Compression quality slider" />
+                <div class="slider-track-wrap">
+                  <input type="range" id="qualityRange" min="5" max="95" value="80" class="range-slider" aria-label="Compression quality slider" />
+                </div>
 
                 <!-- Quick Preset Shortcuts (Visible in PDF Mode) -->
                 <div id="pdfQuickPresets" class="preset-chips pdf-presets hidden" role="group" aria-label="PDF Quick Presets">
