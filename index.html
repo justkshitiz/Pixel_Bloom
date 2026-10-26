@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Pixel Bloom - Fast Local Image & PDF Compression</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Navigation -->
+    <header class="top-nav" role="banner">
+      <div class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-name">Pixel Bloom</span>
+      </div>
+
+      <div class="nav-controls">
+        <!-- Language Switcher -->
+        <div class="lang-selector" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" class="lang-btn" data-lang="hi" aria-pressed="false">हिन्दी</button>
+          <button type="button" class="lang-btn" data-lang="hinglish" aria-pressed="false">Hinglish</button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button type="button" id="themeToggleBtn" class="theme-btn" title="Toggle Theme" aria-label="Toggle Theme: System">
+          <svg id="themeIcon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
+          <span id="themeLabel" class="theme-label">System</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="main-content" role="main">
+      <!-- Intro Section -->
+      <section class="tool-intro">
+        <div class="badge" data-i18n="stepBadge">Step 01 • Utility</div>
+        <h1 class="tool-title" data-i18n="toolHeading">Fast Compression</h1>
+        <p class="tool-desc" data-i18n="toolDesc">
+          Lightweight, privacy-friendly compression. Runs locally on your device with no server uploads.
+        </p>
+
+        <!-- Mode Switch: Image vs PDF -->
+        <div class="mode-tabs" role="tablist" aria-label="Compression File Mode">
+          <button type="button" class="mode-tab active" data-mode="image" role="tab" aria-selected="true" data-i18n="modeImage">Image</button>
+          <button type="button" class="mode-tab" data-mode="pdf" role="tab" aria-selected="false" data-i18n="modePdf">PDF</button>
+        </div>
+      </section>
+
+      <!-- Main Compression Card -->
+      <section class="card-container" aria-label="Compression Workspace">
+        <!-- Error Notification Banner -->
+        <div id="errorBanner" class="error-banner hidden" role="alert" aria-live="assertive">
+          <span id="errorMessage"></span>
+          <button type="button" id="closeErrorBtn" class="error-close" aria-label="Dismiss error notification">&times;</button>
+        </div>
+
+        <!-- Dropzone Area -->
+        <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Upload file area. Drop your file here or click to browse.">
+          <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" hidden />
+          <div class="dropzone-inner">
+            <div class="dropzone-icon-circle" aria-hidden="true">
+              <svg id="dropIcon" class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+            </div>
+            <p id="dropTitle" class="dropzone-title" data-i18n="dropTitleImage">Drop your image here, or browse</p>
+            <p id="dropSub" class="dropzone-sub" data-i18n="dropSubImage">Supports JPG, PNG, and WebP (Max 25MB)</p>
+            <button type="button" class="btn-subtle" id="browseBtn" data-i18n="browseBtn">Select File</button>
+          </div>
+        </div>
+
+        <!-- Workbench (Revealed once file is loaded) -->
+        <div id="workbench" class="workbench hidden">
+          <div class="workbench-grid">
+            <!-- Left Preview Column -->
+            <div class="preview-panel">
+              <div class="panel-header">
+                <div class="preview-header-left">
+                  <span class="panel-tag" data-i18n="previewTag">Preview</span>
+                  <span id="fileNameDisplay" class="file-name-text">file.jpg</span>
+                </div>
+                <!-- Before / After Toggle (Image only) -->
+                <div id="previewToggleWrap" class="preview-toggle-group" role="group" aria-label="Preview Version Selector">
+                  <button type="button" id="toggleResultBtn" class="toggle-view-btn active" data-i18n="viewResult" aria-pressed="true">Result</button>
+                  <button type="button" id="toggleOrigBtn" class="toggle-view-btn" data-i18n="viewOriginal" aria-pressed="false">Original</button>
+                </div>
+              </div>
+
+              <div class="preview-box">
+                <img id="previewImage" alt="Preview of processed visual file" class="hidden" />
+                <div id="pdfDocPreview" class="pdf-preview-stub hidden">
+                  <svg class="pdf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                  <span id="pdfPageText" class="pdf-page-count" data-i18n="pdfReady">PDF Document Loaded</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Controls Column -->
+            <div class="controls-panel">
+              <!-- UNIFIED METHOD TOGGLE: Slider vs Target Size -->
+              <div class="control-group">
+                <div class="compress-tabs" role="tablist" aria-label="Compression Mode Options">
+                  <button type="button" class="sub-tab active" data-tab="slider" role="tab" aria-selected="true" data-i18n="tabQuality">Quality %</button>
+                  <button type="button" class="sub-tab" data-tab="target" role="tab" aria-selected="false" data-i18n="tabTarget">Target Size</button>
+                </div>
+              </div>
+
+              <!-- Option A: Granular Slider Mode (Works for Image & PDF) -->
+              <div id="sliderModeSection" class="control-group">
+                <div class="control-label-row">
+                  <label for="qualityRange" data-i18n="qualityLabel">Compression Level</label>
+                  <span id="qualityVal" class="metric-val" aria-live="polite">80%</span>
+                </div>
+                <input type="range" id="qualityRange" min="5" max="95" value="80" class="range-slider" aria-label="Compression quality slider" />
+
+                <!-- Quick Preset Shortcuts (Visible in PDF Mode) -->
+                <div id="pdfQuickPresets" class="preset-chips pdf-presets hidden" role="group" aria-label="PDF Quick Presets">
+                  <button type="button" class="preset-btn pdf-preset-btn" data-pdf-quality="90" aria-pressed="false" data-i18n="pdfPresetLow">Low (90%)</button>
+                  <button type="button" class="preset-btn pdf-preset-btn active" data-pdf-quality="75" aria-pressed="true" data-i18n="pdfPresetBalanced">Balanced (75%)</button>
+                  <button type="button" class="preset-btn pdf-preset-btn" data-pdf-quality="40" aria-pressed="false" data-i18n="pdfPresetHigh">High (40%)</button>
+                </div>
+              </div>
+
+              <!-- Option B: Target Size Mode (Works for Image & PDF) -->
+              <div id="targetModeSection" class="control-group hidden">
+                <label data-i18n="targetLabel">Select Target Limit</label>
+                <div class="preset-chips" role="group" aria-label="Target Size Presets">
+                  <button type="button" class="preset-btn" data-target="50" aria-pressed="false">50 KB</button>
+                  <button type="button" class="preset-btn active" data-target="100" aria-pressed="true">100 KB</button>
+                  <button type="button" class="preset-btn" data-target="200" aria-pressed="false">200 KB</button>
+                  <button type="button" class="preset-btn" data-target="500" aria-pressed="false">500 KB</button>
+                </div>
+
+                <!-- Custom Size Input Row -->
+                <div class="custom-target-box">
+                  <input type="number" id="customTargetInput" class="custom-target-input" placeholder="Custom size" min="1" max="50000" aria-label="Custom target size number" />
+                  <select id="customTargetUnit" class="custom-target-select" aria-label="Custom target size unit">
+                    <option value="KB">KB</option>
+                    <option value="MB">MB</option>
+                  </select>
+                  <button type="button" id="applyCustomTargetBtn" class="btn-subtle-apply" data-i18n="applyBtn">Set</button>
+                </div>
+              </div>
+
+              <!-- Output Format Selection (Image Only) -->
+              <div id="formatGroup" class="control-group">
+                <label data-i18n="formatLabel">Output Format</label>
+                <div class="format-chips" role="group" aria-label="Output Image Formats">
+                  <button type="button" class="chip active" data-format="image/webp" aria-pressed="true">WebP</button>
+                  <button type="button" class="chip" data-format="image/jpeg" aria-pressed="false">JPEG</button>
+                  <button type="button" class="chip" data-format="image/png" aria-pressed="false">PNG</button>
+                </div>
+              </div>
+
+              <!-- Staged Progress Bar Component (PDF Only) -->
+              <div id="progressContainer" class="progress-container hidden" role="region" aria-label="Compression Progress">
+                <div class="progress-label-row">
+                  <span id="progressStatusText" class="progress-status-text" aria-live="polite">Preparing...</span>
+                  <span id="progressPercentText" class="progress-percent-text" aria-live="polite">0%</span>
+                </div>
+                <div class="progress-track" role="progressbar" id="progressBarTrack" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="progressStatusText">
+                  <div id="progressBarFill" class="progress-bar-fill" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <div id="targetStatusText" class="target-status-msg" aria-live="polite"></div>
+
+              <!-- Live Comparison Readout -->
+              <div class="metrics-card">
+                <div class="metric-box">
+                  <span class="metric-sub" data-i18n="origSizeLabel">Original</span>
+                  <span id="origSizeVal" class="metric-num">0 KB</span>
+                </div>
+                <div class="metric-divider" aria-hidden="true">→</div>
+                <div class="metric-box">
+                  <div class="metric-sub-row">
+                    <span class="metric-sub" data-i18n="newSizeLabel">Result</span>
+                    <span id="calcStatusBadge" class="status-indicator-badge">Actual</span>
+                  </div>
+                  <span id="newSizeVal" class="metric-num">0 KB</span>
+                </div>
+                <div class="metric-badge-wrap">
+                  <span id="reductionBadge" class="badge-saving" aria-label="Compression reduction percentage">-0%</span>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="actions-row">
+                <button type="button" id="resetBtn" class="btn-danger-soft" data-i18n="resetBtn">Reset</button>
+                <button type="button" id="downloadBtn" class="btn-primary" data-i18n="downloadBtn" disabled>Download File</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
